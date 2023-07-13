@@ -407,6 +407,8 @@ struct bpf_binary_header {
 	u8 image[];
 };
 
+#define BPF_TAG_SIZE	8
+
 struct bpf_prog {
 	u16			pages;		/* Number of allocated pages */
 	kmemcheck_bitfield_begin(meta);
@@ -416,6 +418,7 @@ struct bpf_prog {
 				dst_needed:1;	/* Do we need dst entry? */
 	kmemcheck_bitfield_end(meta);
 	u32			len;		/* Number of filter blocks */
+	u8			tag[BPF_TAG_SIZE];
 	enum bpf_prog_type	type;		/* Type of BPF program */
 	struct bpf_prog_aux	*aux;		/* Auxiliary fields */
 	struct sock_fprog_kern	*orig_prog;	/* Original BPF program */
