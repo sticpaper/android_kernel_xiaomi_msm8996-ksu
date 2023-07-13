@@ -678,6 +678,7 @@ out:
 	return;
 }
 
+/* Overriding bpf_jit_free() as we don't set images read-only. */
 void bpf_jit_free(struct bpf_prog *fp)
 {
 	if (fp->jited)
